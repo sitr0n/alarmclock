@@ -11,7 +11,6 @@ void Bluetoothcon::play(QString file_name)
 {
     while(m_is_ready == false);
     m_is_ready = false;
-    qDebug() << "playing song\n";
     QString command = "aplay " + file_name;
     QProcess player;
     player.setWorkingDirectory("/home/pi/Music");
@@ -39,6 +38,6 @@ void Bluetoothcon::run()
             player.close();
             m_is_ready = true;
         }
-        QThread::sleep(600);
+        QThread::sleep(600); // replace with QWaitCondition for clean shut down of thread
     }
 }

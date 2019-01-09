@@ -5,7 +5,6 @@
 Audio::Audio()
 {
     bluetooth.start();
-    qDebug() << "started bt";
 }
 
 Audio::~Audio()
