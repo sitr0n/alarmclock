@@ -44,3 +44,13 @@ void MainWindow::on_btnOff_clicked()
     m_alarmTimer->stop();
     ui->lcdNumber->display("--:--");
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_alarm->setLights(true);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    m_alarm->setLights(false);
+}

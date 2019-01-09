@@ -1,6 +1,7 @@
 #include "alarmclock.h"
 #include <QTime>
 #include <QDebug>
+#include <QThread>
 
 #define TRIGGER_TIMEOUT 300
 #define PRE_ALARM_DIM 1800
@@ -10,7 +11,6 @@ AlarmClock::AlarmClock() :
     m_minute(0),
     m_alarmHandled(false)
 {
-    m_alarmTune.setWorkingDirectory("/home/pi/Music");
     m_lights.setColormode(ColorMode::SUNLIGHT);
 }
 
@@ -19,8 +19,16 @@ AlarmClock::AlarmClock(int hour, int minute) :
     m_minute(minute),
     m_alarmHandled(false)
 {
-    m_alarmTune.setWorkingDirectory("/home/pi/Music");
     m_lights.setColormode(ColorMode::SUNLIGHT);
+}
+
+void AlarmClock::setLights(bool on)
+{
+    if (on == true) {
+        m_lights.setBrightness(1);
+    } else {
+        m_lights.setBrightness(0);
+    }
 }
 
 void AlarmClock::setAlarm(int hour, int minute)
@@ -56,7 +64,5 @@ void AlarmClock::tick()
 
 void AlarmClock::alarmEvent()
 {
-    QString song = "MariahCarey-AllIWantForChristmasIsYou.mp3";
-    QString command = "omxplayer " + song;
-    m_alarmTune.start(command);
+    m_audio.play("ShikiNoUta.wav");
 }

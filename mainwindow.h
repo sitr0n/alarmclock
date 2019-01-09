@@ -21,6 +21,10 @@ private slots:
     void on_btnSetAlarm_clicked();
     void on_btnOff_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     AlarmClock *m_alarm;

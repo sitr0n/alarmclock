@@ -26,10 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     huelights.cpp \
-    alarmclock.cpp
+    alarmclock.cpp \
+    audio.cpp \
+    bluetoothcon.cpp
 
 HEADERS  += mainwindow.h \
     huelights.h \
-    alarmclock.h
+    alarmclock.h \
+    audio.h \
+    bluetoothcon.h
 
 FORMS    += mainwindow.ui

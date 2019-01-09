@@ -1,7 +1,7 @@
 #ifndef ALARMCLOCK_H
 #define ALARMCLOCK_H
-
 #include "huelights.h"
+#include "audio.h"
 #include <QObject>
 #include <QProcess>
 
@@ -17,6 +17,7 @@ public:
     AlarmClock(int hour, int minute);
     void setAlarm(int hour, int minute);
     void tick();
+    void setLights(bool);
 
 private:
     void alarmEvent();
@@ -24,7 +25,7 @@ private:
     int m_hour, m_minute;
     bool m_alarmHandled;
     HueLights m_lights;
-    QProcess m_alarmTune;
+    Audio m_audio;
 };
 
 #endif // ALARMCLOCK_H
