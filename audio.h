@@ -1,24 +1,26 @@
 #ifndef AUDIO_H
 #define AUDIO_H
-#include "bluetoothcon.h"
-
-#include <QProcess>
-#include <QString>
-#include <QTime>
-#include <QThread>
-
 #include <QObject>
 
-class Audio
+#include <QVector>
+#include <QTimer>
+#include <jblgo2driver.h>
+
+class Audio : public QObject
 {
-    //Q_OBJECT
+    Q_OBJECT
 public:
     Audio();
     ~Audio();
     void play(QString file_name);
+    void queue(QString file_name);
+    void stop();
+    void skip();
 
 private:
-    Bluetoothcon bluetooth;
+    QVector<QString> m_queue;
+    QTimer* m_ticker;
+    JBLGO2driver m_driver;
 };
 
 #endif // AUDIO_H

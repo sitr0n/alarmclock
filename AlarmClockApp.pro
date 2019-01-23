@@ -28,12 +28,12 @@ SOURCES += main.cpp\
     huelights.cpp \
     alarmclock.cpp \
     audio.cpp \
-    bluetoothcon.cpp
+    jblgo2driver.cpp
 
 HEADERS  += mainwindow.h \
     huelights.h \
     alarmclock.h \
     audio.h \
-    bluetoothcon.h
+    jblgo2driver.h
 
 FORMS    += mainwindow.ui

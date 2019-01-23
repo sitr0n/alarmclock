@@ -64,5 +64,7 @@ void AlarmClock::tick()
 
 void AlarmClock::alarmEvent()
 {
-    m_audio.play("ShikiNoUta.wav");
+    m_audio.queue("weback.wav");
+    m_audio.queue("weback.wav");
+    //m_audio.play("ShikiNoUta.wav");
 }
