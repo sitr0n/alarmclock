@@ -1,31 +1,33 @@
 #ifndef ALARMCLOCK_H
 #define ALARMCLOCK_H
-#include "huelights.h"
+#include "philipshuedriver.h"
 #include "audio.h"
 #include <QObject>
 #include <QProcess>
+#include <QTimer>
 
 class AlarmClock : public QObject
 {
 Q_OBJECT
-public slots:
-    void update();
 
 public:
     AlarmClock();
-    ~AlarmClock() = default;
-    AlarmClock(int hour, int minute);
+    ~AlarmClock();
     void setAlarm(int hour, int minute);
-    void tick();
+    void stopAlarm();
+    void stop_audio();
+
     void setLights(bool);
+    void set_brightness(int percent);
 
 private:
     void alarmEvent();
 
     int m_hour, m_minute;
     bool m_alarmHandled;
-    HueLights m_lights;
+    PhilipsHUEdriver m_lights;
     Audio m_audio;
+    QTimer *m_ticker;
 };
 
 #endif // ALARMCLOCK_H

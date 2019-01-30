@@ -24,16 +24,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    huelights.cpp \
+    philipshuedriver.cpp \
     alarmclock.cpp \
     audio.cpp \
-    jblgo2driver.cpp
+    jblgo2driver.cpp \
+    sunrisewindow.cpp \
+    settingswindow.cpp
 
-HEADERS  += mainwindow.h \
-    huelights.h \
+HEADERS  += \
+    philipshuedriver.h \
     alarmclock.h \
     audio.h \
-    jblgo2driver.h
+    jblgo2driver.h \
+    sunrisewindow.h \
+    settingswindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    sunrisewindow.ui \
+    settingswindow.ui

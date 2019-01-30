@@ -1,5 +1,5 @@
 #include "audio.h"
-#define TICK_PERIOD 1000
+#define TICK_RATE 1000
 
 Audio::Audio() :
     m_ticker(new QTimer(this))
@@ -11,7 +11,7 @@ Audio::Audio() :
             m_queue.erase(m_queue.begin());
         }
     });
-    m_ticker->setInterval(TICK_PERIOD);
+    m_ticker->setInterval(TICK_RATE);
     m_ticker->start();
 }
 
