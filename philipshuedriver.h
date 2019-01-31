@@ -11,7 +11,7 @@ class PhilipsHUEdriver : public QObject
 Q_OBJECT
 public:
     PhilipsHUEdriver();
-    ~PhilipsHUEdriver();
+    ~PhilipsHUEdriver() = default;
     void set_brightness(int percent);
     void set_colormode(ColorMode mode);
     void pair();
@@ -20,7 +20,7 @@ private:
     void request_settings();
     void change_settings(const QJsonObject state);
 
-    QNetworkAccessManager *m_manager;
+    QNetworkAccessManager m_manager;
     QString m_ip;
     QString m_username;
     int m_prev_bri;

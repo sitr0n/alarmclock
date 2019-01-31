@@ -20,14 +20,18 @@ public:
     void setLights(bool);
     void set_brightness(int percent);
 
+signals:
+    void audio_connected(bool connected);
+
 private:
     void alarmEvent();
 
     int m_hour, m_minute;
     bool m_alarmHandled;
     PhilipsHUEdriver m_lights;
-    Audio m_audio;
+    Audio *m_audio;
     QTimer *m_ticker;
+    bool m_connected;
 };
 
 #endif // ALARMCLOCK_H

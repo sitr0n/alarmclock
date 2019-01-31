@@ -13,12 +13,13 @@ public:
     ~JBLGO2driver();
     void stream_to_speaker(QString file_name);
     void stop_stream();
-    bool is_ready();
+    bool is_ready() const;
+    bool is_connected() const;
 
 private:
-    QProcess* m_player;
-    QTimer* m_speaker_inactivity;
-
+    QProcess m_player;
+    QTimer m_speaker_inactivity;
+    bool connected;
 };
 
 #endif // JBLGO2DRIVER_H

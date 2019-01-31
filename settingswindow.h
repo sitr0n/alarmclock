@@ -4,6 +4,11 @@
 #include <QDialog>
 #include <QProcess>
 #include <QTime>
+#include "philipshuedriver.h"
+#include "audio.h"
+#include <QObject>
+#include <QProcess>
+#include <QTimer>
 
 namespace Ui {
 class SettingsWindow;
@@ -24,7 +29,7 @@ private slots:
 
 private:
     Ui::SettingsWindow *ui;
-    QProcess* file_finder;
+    QProcess file_finder;
 };
 
 #endif // SETTINGSWINDOW_H

@@ -10,11 +10,10 @@
 #define MAX_BRI 254
 
 PhilipsHUEdriver::PhilipsHUEdriver() :
-    m_manager   (new QNetworkAccessManager(this)),
     m_ip        ("192.168.1.159"),
     m_username  ("YK7nzmX6qDOvOh2TigfYgaFxn1H-bdVTPWY2Yszq")
 {
-    connect(m_manager, &QNetworkAccessManager::finished, this,
+    connect(&m_manager, &QNetworkAccessManager::finished, this,
         [=](QNetworkReply *reply) {
         reply->deleteLater();
 
@@ -38,17 +37,12 @@ PhilipsHUEdriver::PhilipsHUEdriver() :
     });
 }
 
-PhilipsHUEdriver::~PhilipsHUEdriver()
-{
-    delete m_manager;
-}
-
 void PhilipsHUEdriver::change_settings(const QJsonObject state)
 {
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + m_ip + "/api/" + m_username + "/lights/4/state"));
     QJsonDocument capsule(state);
-    m_manager->put(request, capsule.toJson());
+    m_manager.put(request, capsule.toJson());
 }
 
 void PhilipsHUEdriver::set_brightness(int percent)
@@ -87,7 +81,7 @@ void PhilipsHUEdriver::request_settings()
 {
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + m_ip + "/api/" + m_username));
-    m_manager->get(request);
+    m_manager.get(request);
 }
 
 void PhilipsHUEdriver::pair()
@@ -102,5 +96,5 @@ void PhilipsHUEdriver::pair()
     QString strJson(doc.toJson(QJsonDocument::Compact));
 
     QByteArray body = strJson.toUtf8();
-    m_manager->post(request, body);
+    m_manager.post(request, body);
 }

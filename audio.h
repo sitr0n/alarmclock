@@ -17,10 +17,14 @@ public:
     void stop();
     void skip();
 
+signals:
+    void audio_connected(bool connection);
+
 private:
     QVector<QString> m_queue;
-    QTimer* m_ticker;
+    QTimer m_ticker;
     JBLGO2driver m_driver;
+    bool m_connected;
 };
 
 #endif // AUDIO_H

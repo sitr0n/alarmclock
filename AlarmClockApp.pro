@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
     philipshuedriver.cpp \
-    alarmclock.cpp \
     audio.cpp \
     jblgo2driver.cpp \
     sunrisewindow.cpp \
@@ -33,7 +32,6 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     philipshuedriver.h \
-    alarmclock.h \
     audio.h \
     jblgo2driver.h \
     sunrisewindow.h \

@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TabWidget</string>
+   <string>Sunrise</string>
   </property>
   <property name="currentIndex">
-   <number>1</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="alarm">
    <attribute name="title">
@@ -29,8 +29,14 @@
       <height>101</height>
      </rect>
     </property>
+    <property name="value" stdset="0">
+     <double>0.000000000000000</double>
+    </property>
    </widget>
    <widget class="QPushButton" name="alarm_start_button">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -50,7 +56,10 @@
      <string>Start</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="alarm_stop_button">
+   <widget class="QPushButton" name="alarm_set_button">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -90,11 +99,14 @@
     <property name="maximum">
      <number>100</number>
     </property>
+    <property name="sliderPosition">
+     <number>63</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="lights_on_button">
+   <widget class="QPushButton" name="lights_off_button">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -110,10 +122,10 @@
      </font>
     </property>
     <property name="text">
-     <string>On</string>
+     <string>Off</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="lights_off_button">
+   <widget class="QPushButton" name="lights_on_button">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -129,7 +141,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Off</string>
+     <string>On</string>
     </property>
    </widget>
    <widget class="QGraphicsView" name="lights_color_palette">

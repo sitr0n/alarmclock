@@ -2,23 +2,31 @@
 #define TICK_RATE 1000
 
 Audio::Audio() :
-    m_ticker(new QTimer(this))
+    m_connected(false)
 {
-    connect(m_ticker, &QTimer::timeout,
+    connect(&m_ticker, &QTimer::timeout,
         [=](){
         if (m_queue.empty() == false && m_driver.is_ready()) {
             m_driver.stream_to_speaker(m_queue.front());
             m_queue.erase(m_queue.begin());
         }
+        if (m_driver.is_connected() && !m_connected) {
+            m_connected = true;
+            emit audio_connected(m_connected);
+        } else if (!m_driver.is_connected() && m_connected) {
+            m_queue.clear();
+            m_driver.stop_stream();
+            m_connected = false;
+            emit audio_connected(m_connected);
+        }
     });
-    m_ticker->setInterval(TICK_RATE);
-    m_ticker->start();
+    m_ticker.setInterval(TICK_RATE);
+    m_ticker.start();
 }
 
 Audio::~Audio()
 {
-    m_ticker->stop();
-    delete m_ticker;
+    m_ticker.stop();
 }
 
 void Audio::play(QString file_name)

@@ -12,7 +12,9 @@ AlarmClock::AlarmClock() :
     m_hour(0),
     m_minute(0),
     m_alarmHandled(false),
-    m_ticker(new QTimer(this))
+    m_ticker(new QTimer(this)),
+    m_audio(new Audio()),
+    m_connected(true)
 {
     m_lights.set_colormode(ColorMode::SUNLIGHT);
     connect(m_ticker, &QTimer::timeout,
@@ -34,11 +36,27 @@ AlarmClock::AlarmClock() :
         }
     });
     m_ticker->setInterval(TICK_RATE);
+
+    connect(m_audio, &Audio::audio_connected, this,
+        [=](bool connection){
+        if (connection && !m_connected) {
+            m_connected = true;
+            emit audio_connected(m_connected);
+        } else if (!connection && m_connected) {
+            m_connected = false;
+            emit audio_connected(m_connected);
+        }
+
+        auto time_stamp = QTime::currentTime().toString("HH:mm");
+
+        qDebug() << time_stamp << "In alarm clock:: " << connection;
+    });
 }
 
 AlarmClock::~AlarmClock()
 {
     delete m_ticker;
+    delete m_audio;
 }
 
 void AlarmClock::setLights(bool on)
@@ -57,7 +75,7 @@ void AlarmClock::set_brightness(int percent)
 
 void AlarmClock::stop_audio()
 {
-    m_audio.stop();
+    m_audio->stop();
 }
 
 void AlarmClock::setAlarm(int hour, int minute)
@@ -78,8 +96,8 @@ void AlarmClock::alarmEvent()
     QSettings settings;
     qDebug() << settings.value("Audio/alarmSong").toString();
 
-    m_audio.queue("ShikiNoUta.wav");
-    m_audio.queue("medicine.wav");
-    m_audio.queue("weback.wav");
+    m_audio->queue("ShikiNoUta.wav");
+    m_audio->queue("medicine.wav");
+    m_audio->queue("weback.wav");
 
 }
